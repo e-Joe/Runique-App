@@ -1,4 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.ejoe.convetion.ExtensionType
+import com.ejoe.convetion.configureBuildTypes
 import com.ejoe.convetion.configureKotlinAndroid
 import com.ejoe.convetion.libs
 import org.gradle.api.Plugin
@@ -9,7 +11,7 @@ import org.gradle.kotlin.dsl.configure
  * Created by Ilija Vucetic on 27.1.25..
  * Copyright (c) 2025 Aktiia. All rights reserved.
  */
-class AndroidApplicationConventionPlugin: Plugin<Project> {
+class AndroidApplicationConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         target.run {
@@ -27,6 +29,11 @@ class AndroidApplicationConventionPlugin: Plugin<Project> {
                 }
 
                 configureKotlinAndroid(this)
+
+                configureBuildTypes(
+                    commonExtension = this,
+                    extensionType = ExtensionType.APPLICATION
+                )
             }
         }
     }
