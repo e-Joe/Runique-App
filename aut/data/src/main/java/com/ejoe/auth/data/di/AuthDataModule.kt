@@ -1,10 +1,13 @@
 package com.ejoe.auth.data.di
 
+import com.ejoe.aut.domain.AuthRepository
 import com.ejoe.aut.domain.PatternValidator
 import com.ejoe.aut.domain.UserDataValidator
+import com.ejoe.auth.data.AuthRepositoryImpl
 import com.ejoe.auth.data.EmailPatternValidator
 
 import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 
@@ -18,4 +21,5 @@ val authDataModule = module {
         EmailPatternValidator
     }
     singleOf(::UserDataValidator)
+    singleOf(::AuthRepositoryImpl).bind<AuthRepository>()
 }
