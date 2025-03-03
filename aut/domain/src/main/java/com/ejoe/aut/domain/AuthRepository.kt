@@ -8,5 +8,6 @@ import com.ejoe.core.domain.util.EmptyResult
  * Copyright (c) 2025 Aktiia. All rights reserved.
  */
 interface AuthRepository {
+    suspend fun login(email: String, password: String): EmptyResult<DataError.Network>
     suspend fun register(email: String, password: String): EmptyResult<DataError.Network>
 }

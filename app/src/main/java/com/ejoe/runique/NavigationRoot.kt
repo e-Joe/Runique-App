@@ -1,4 +1,4 @@
-package com.ejoe.runique
+package com.plcoding.runique
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -8,21 +8,21 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.ejoe.aut.presentation.intro.IntroScreenRoot
+import com.ejoe.aut.presentation.login.LoginScreenRoot
 import com.ejoe.aut.presentation.register.RegisterScreenRoot
 
-/**
- * Created by Ilija Vucetic on 19.2.25..
- * Copyright (c) 2025 Aktiia. All rights reserved.
- */
+
 @Composable
 fun NavigationRoot(
     navController: NavHostController,
+    isLoggedIn: Boolean
 ) {
     NavHost(
         navController = navController,
-        startDestination = "auth"
+        startDestination = if (isLoggedIn) "run" else "auth"
     ) {
         authGraph(navController)
+        runGraph(navController)
     }
 }
 
@@ -58,7 +58,35 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController) {
             )
         }
         composable("login") {
-            Text(text = "Login")
+            LoginScreenRoot(
+                onLoginSuccess = {
+                    navController.navigate("run") {
+                        popUpTo("auth") {
+                            inclusive = true
+                        }
+                    }
+                },
+                onSignUpClick = {
+                    navController.navigate("register") {
+                        popUpTo("login") {
+                            inclusive = true
+                            saveState = true
+                        }
+                        restoreState = true
+                    }
+                }
+            )
+        }
+    }
+}
+
+private fun NavGraphBuilder.runGraph(navController: NavHostController) {
+    navigation(
+        startDestination = "run_overview",
+        route = "run"
+    ) {
+        composable("run_overview") {
+            Text(text = "Run overview!")
         }
     }
 }
