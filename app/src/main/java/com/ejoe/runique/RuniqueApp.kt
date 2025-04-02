@@ -4,6 +4,7 @@ import android.app.Application
 import com.ejoe.aut.presentation.di.authViewModelModule
 import com.ejoe.auth.data.di.authDataModule
 import com.ejoe.core.data.di.coreDataModule
+import com.ejoe.run.presentation.run_overview.di.runViewModelModule
 import com.ejoe.runique.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -29,7 +30,8 @@ class RuniqueApp : Application() {
                 authDataModule,
                 authViewModelModule,
                 appModule,
-                coreDataModule
+                coreDataModule,
+                runViewModelModule
             )
         }
     }

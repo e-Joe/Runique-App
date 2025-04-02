@@ -10,6 +10,7 @@ import androidx.navigation.navigation
 import com.ejoe.aut.presentation.intro.IntroScreenRoot
 import com.ejoe.aut.presentation.login.LoginScreenRoot
 import com.ejoe.aut.presentation.register.RegisterScreenRoot
+import com.ejoe.run.presentation.run_overview.RunOverviewScreenRoot
 
 
 @Composable
@@ -86,7 +87,7 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
         route = "run"
     ) {
         composable("run_overview") {
-            Text(text = "Run overview!")
+           RunOverviewScreenRoot()
         }
     }
 }
